@@ -135,6 +135,17 @@ class Graph:
     def is_connected(self):
         pass
 
+    #Verifica se a lista de nós possui aresta entre um nó e o proximo da lista
+    def is_valid_walk(self, walk):
+
+        for i in range(len(walk)-1):
+
+            if not self.there_is_edge(walk[i], walk[i+1]):
+                
+                return False
+        
+        return True
+
     def __str__(self) -> str:
         output = "Nodes: " + str(self.node_count) + "\n"
         output += "Edges: " + str(self.edge_count) + "\n"
