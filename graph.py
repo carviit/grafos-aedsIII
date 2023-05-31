@@ -103,27 +103,43 @@ class Graph:
     
     def is_regular(self):
 
-        if self.is_directed():
-            
-            return False
-        
-        teste = {}
-
-        count = 1
+        degree_frist_node = self.degree_out(list(self.adj_list)[0])
 
         for node in self.adj_list:
 
-            teste.append(self.highest_degree_in(node))
-    
-        for node in self.adj_list:
+            if self.degree_out(node) != degree_frist_node:
 
-            if self.highest_degree_in(node) != teste[count]:
-                
                 return False
             
-            count+=1
-
         return True
+    
+    def complement(self):
+        g2 = Graph()
+
+        for node in self.adj_list:
+            g2.add_node(node)
+            for node2 in self.adj_list:
+                if node != node2 and not self.there_is_edge(node, node2):
+                    g2.add_edge(node,node2)
+        
+        return g2
+    
+    def is_subgraph_of(self, g2):
+        for node in self.adj_list:
+            if node in self.adj_list:
+                return False
+        
+        for node2 in self.adj_list:
+            if node2 not in g2.adj_list[node]:
+
+                return False
+        
+        return True
+    
+    def is_connected(self):
+        pass
+
+    
 
 
 

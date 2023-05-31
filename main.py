@@ -15,8 +15,6 @@ g.add_edge("B", "C")
 g.add_edge("C", "B")
 g.add_edge("C", "A")
 
-
-
 print(g)
 
 print(g.is_directed())
