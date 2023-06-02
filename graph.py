@@ -145,6 +145,37 @@ class Graph:
                 return False
         
         return True
+    
+    #Busca em largura em um grafo dado um nó de origem
+    def breadth_first_search(self, sourceNode):
+
+        desc = []
+        q = [] #Fila de nós a processar
+        r = [] #Resposta - Ordem de descoberta
+
+        for node in self.adj_list:
+            desc.append(node)
+            desc[node] = 0
+
+        q.append(sourceNode)
+        r.append(sourceNode)
+        desc[sourceNode] = 1
+
+        while q != 0:
+
+            print(q)
+
+            u = q.pop(0)
+
+        for node in self.neighbors[u]:
+            
+            if desc[node] == 0:
+
+                q.append(node)
+                r.append(node)
+                desc[node] = 1
+
+        return r
 
     def __str__(self) -> str:
         output = "Nodes: " + str(self.node_count) + "\n"
