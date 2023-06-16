@@ -119,15 +119,15 @@ class Graph:
                 if node != node2 and not self.there_is_edge(node, node2):
                     g2.add_edge(node, node2)
         return g2
-
+    
     # Verifica se o grafo passado como parâmetro é sub-grafo do grafo original
-    def is_subgraph_of(self, g2):
-        for node in self.adj_list:
-            if node in self.adj_list:
+    def is_subgraph_of(self, g2):       
+        for node in g2.adj_list:
+            if node not in self.adj_list:
                 return False
-        for node2 in self.adj_list:
-            if node2 not in g2.adj_list[node]:
-                return False
+            for neighbor in g2.adj_list[node]:
+                if neighbor not in self.adj_list[node]:
+                    return False
         return True
 
     # Verifica se o grafo é conexo (conectado)
@@ -201,7 +201,7 @@ class Graph:
                 r.append(node)
 
         return r
-    
+
     def dfs_rec_visit(self, u, desc, R):
         desc[u] = 1
         R.append(u)
@@ -215,8 +215,8 @@ class Graph:
             desc[node] = 0
         R = []
         self.dfs_rec_visit(s, desc, R)
-        return R 
-    
+        return R
+
     def dfs(self, s):
         desc = {}
         for node in self.adj_list:
